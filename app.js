@@ -16,12 +16,20 @@ var api = require('./routes/api');
 
 
 var authenticate = require('./routes/authenticate')(passport);
-var mongoose = require('mongoose');    
+var mongoose = require('mongoose');
 
 var mongodb     = process.env.IP || "localhost";
-                     //add for Mongo support
-//mongoose.connect('mongodb://localhost/cho-you');  
-mongoose.connect('mongodb://' + mongodb +'/cho-you');             //connect to Mongo
+//add for Mongo support
+
+//mongoose.connect('mongodb://localhost/cho-you');
+
+//initial config when using docker
+//mongoose.connect('mongodb://' + mongodb +'/cho-you');             //connect to Mongo
+
+//my config for remote connect to db
+mongoose.set('debug',true);
+mongoose.connect('mongodb://' + "192.168.99.100" +'/cho-you');
+
 var app = express();
 
 // view engine setup
@@ -86,9 +94,9 @@ app.use(function(err, req, res, next) {
 
 
 // var upload = multer({
- 
+
 //  dest: './uploads/'
- 
+
 // });
 
 // app.post('/api/upload', upload.single('photos'), function (req, res, next) {
