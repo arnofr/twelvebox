@@ -1,0 +1,97 @@
+<!--
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Search by status</label>
+            <select ng-model="filters.status" ng-options="x for x in vm.orderStatus">
+        </div>
+    </div>
+    <div class="col-md-4">
+            <div class="form-group">
+               date
+            </div>
+        </div>
+    
+
+    </div>-->
+<div>
+    <div class="row">
+        <div class="col-md-4 form-group">
+            <label for="exampleInputEmail1">Search by status</label>
+            <div class="input-group">
+                <select ng-model="filters.status" ng-options="x for x in vm.orderStatus"></select>
+            </div>
+        </div>
+        <div class="col-md-3 form-group">
+           <!--vm.formDate:: {{vm.fromDate}}::::::::::::-->
+            <label for="formdate" class="control-label">From Date</label>
+            <div class="input-group">
+                <input id="formDate" name="fromDate" readonly="" placeholder="yyyy/MM/dd" uib-datepicker-popup-wrap="" ng-pattern="vm.pattern.date" type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                        ng-model="vm.fromDate" ng-change="vm.CalculateNoDays()" is-open="popup1.opened" datepicker-options="dateOptions" 
+                        popup-placement="auto bottom-right" show-button-bar="false" required />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+       <div class="col-md-3 form-group">
+          <!--vm.toDate:: {{vm.toDate}}-->
+            <label for="formdate" class="control-label">To Date</label>
+            <div class="input-group">
+                <input id="toDate" name="toDate" readonly="" placeholder="yyyy/MM/dd" uib-datepicker-popup-wrap="" ng-pattern="vm.pattern.date" type="text" class="form-control" uib-datepicker-popup="{{format}}"
+                        ng-model="vm.toDate" ng-change="vm.CalculateNoDays()" is-open="popup2.opened" datepicker-options="dateOptions" 
+                        popup-placement="auto bottom-right" show-button-bar="false" required />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-2 form-group">
+             <label for="formdate" class="control-label">&nbsp;</label>
+             <div class="input-group">
+                 <input type="submit" value="Search" class="btn btn-primary" ng-click="OrderSeachByDate()"/>
+                 </div>
+            
+        </div>
+        
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center">Order Id</th>
+                    <th class="text-center">Order Date</th>
+                    <th class="text-center">User name</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center">Status</th>
+
+                </tr>
+            </thead>
+            <tbody ng-if="!vm.orderList || vm.orderList.length==0">
+                <tr>
+                    <td colspan="5">
+                        No records found
+                    </td>
+                </tr>
+            </tbody>
+
+
+
+            <tbody ng-if="vm.orderList && vm.orderList.length>0">
+                <tr ng-repeat="order in vm.orderList  | filter:filters.status" class="text-center">
+                    <td ng-bind="order._id"></td>
+                    <td>{{order.order_date  }}</td>
+                    <!--| date:'yyyy/MM/dd'-->
+                    <td ng-bind="order.username"></td>
+
+                    <td ng-bind="order.totalprice"></td>
+                    <td>
+                        <!--ng-bind="order.status"-->
+                        <select ng-model="order.status" ng-options="x for x in vm.orderStatus" ng-change="updateOrderStatus(order)">
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+     </div>

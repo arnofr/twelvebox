@@ -1,0 +1,105 @@
+<!--<h4>{{current_user}} says</h4>-->
+<!--<div class="clearfix">
+  <form ng-Submit="post()" ng-show="authenticated">
+
+		 <h4>Add item</h4>
+    <textarea required class="form-control" maxlength="200" rows="3" placeholder="Add product description" ng-model="newPost.text"></textarea>
+    <input class="btn submit-btn pull-right" type="submit" value="Submit!" />
+  </form>
+</div>
+<div id="post-stream">
+	<h4>Item list</h4>
+		<div class="post" ng-repeat="post in posts | orderBy:'created_at':true" ng-class-odd="'odd'" ng-class-even="'even'"> 
+			<p>{{post.text}}</p>
+			<small>Posted by @{{post.created_by}}</small>
+			<small class="pull-right">{{post.created_at | date:"h:mma 'on' MMM d, y"}}</small>
+		</div>
+</div>-->
+<!--Page Title-->
+
+<div>
+	<div class="form-group">
+		<div ng-if="userObj.role=='Vendor' && authenticated">
+			<button type="button" class="theme-btn btn-style-one add-to-cart" ng-click="openAddProductPopup()">Add Product </button>
+		</div>
+
+		<!--Sort By-->
+		<div class="items-sorting">
+			<div class="row clearfix">
+				<div class="results-column col-md-8 col-sm-12 col-xs-12">
+					<!--{{products.length}}-->
+					<!--<div class="text">Showing 1 - 12  of  30 Result</div>-->
+					<div class="text">Showing {{totalProducts.length}} results</div>
+				</div>
+				<div class="select-column col-md-2 col-sm-12 col-xs-12">
+					<!--<div class="form-group">
+                            <select name="sort-by">
+                                <option>Default Sorting</option>
+                                <option>Ascending Order</option>
+                                <option>Descending Order</option>
+                            </select>
+                        </div>-->
+			
+
+					<input type="text" numbers-only class="form-control" placeholder="Search by zipcode" ng-model="search.zipcode"/>
+
+				</div>
+				<div class="select-column col-md-2 col-sm-12 col-xs-12">
+					<a href="#/cart" class="theme-btn add-cart-btn">
+							({{cartProducts.length}}) CART <span class="fa fa-shopping-cart"></span>
+							</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+
+	<div class="row clearfix">
+<!--| filter: (!!search || undefined)-->
+		<div ng-repeat="product in totalProducts = (products |filter:{zipcode:search.zipcode||undefined} | orderBy:'created_at':true)">
+			
+			<div class="default-shop-item col-lg-3 col-md-4 col-sm-6 col-xs-12">
+				<div class="inner-box">
+					<div class="image-box">
+						<figure class="image">
+							<a href="shop-single.html">
+								<img src="{{product.imagepath || 'images/logo6.png'}}" alt="">
+							</a>
+						</figure>
+					</div>
+					<div class="lower-content">
+						<h3><a href="shop-single.html">{{product.title}}</a></h3>
+						<div class="price"><span class="price-txt">$ {{product.price}}</span></div>
+					</div>
+
+					<!--Overlay Box-->
+					<div class="overlay-box">
+						<div class="prod-options">
+
+							<a class="lightbox-image option-btn" href="images/resource/products/1.jpg" title="Image Caption Here" data-fancybox-group="example-gallery"><span class="fa fa-eye"></span></a>
+							<a class="option-btn" href="shop-single.html"><span class="fa fa-heart-o"></span></a>
+							<a class="option-btn" href="shop-single.html"><span class="fa fa-retweet"></span></a>
+							<a href="" ng-if="!product.isAddToCart" class="theme-btn add-cart-btn" ng-click="addToCart(product)">ADD TO CART <span class="fa fa-shopping-cart"></span></a>
+							<a href="#/cart/{{product._id}}" ng-if="product.isAddToCart" class="theme-btn add-cart-btn">GO TO CART <span class="fa fa-shopping-cart"></span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<!-- Styled Pagination -->
+	<div class="styled-pagination text-center">
+		<ul>
+			<li><a href="#" class="active">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a class="next" href="#">Next</a></li>
+		</ul>
+	</div>
+
+</div>

@@ -1,0 +1,138 @@
+<!--imagepath:"",-->
+
+<!--
+<div class="contact-form default-form">
+    <form class="form-auth" ng-submit="addProduct()">
+        <div class="row clearfix">
+
+
+
+            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <input type="text" name="title" ng-model="vm.product.title" placeholder="Product title *">
+            </div>
+
+            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <input type="text" name="title" ng-model="vm.product.description" placeholder="Product description *">
+            </div>
+           
+           <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <input type="text" name="title" ng-model="vm.product.price" placeholder="Product price *">
+            </div>
+
+            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <input type="text" name="title" ng-model="vm.product.sku" placeholder="Product sku *">
+            </div>
+
+            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <input type="text" name="title" ng-model="vm.product.vendor" placeholder="Product vendor *">
+            </div>
+
+            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <input type="text" name="title" ng-model="vm.product.visibleonlinestore" placeholder="Product visibleonlinestore *">
+            </div>
+
+            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <input type="text" name="title" ng-model="vm.product.producttype" placeholder="Product producttype *">
+            </div>
+
+            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                <div class="text-center">
+                    <button type="submit" class="theme-btn btn-style-one">Add Product</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>-->
+<!--<form id="uploadForm"
+								enctype="multipart/form-data"
+								action="/api/upload"
+								method="post">
+								<input type="file" name="userPhoto" />
+								<input type="submit" value="Upload Image" name="submit">
+								<span id = "status"></span>
+ 							</form>-->
+
+
+<form class="form-auth" name="addproductform" ng-submit="addProduct()">
+	<div class="auto-container">
+		<div class="sec-title-one">
+			<h2>Add Product</h2>
+		</div>
+		<div class="default-form">
+
+			<div class="row clearfix">
+
+				<div class="form-group col-md-6 col-sm-6 col-xs-12">
+
+					<div class="form-group col-md-12 col-sm-12 col-xs-12">
+						<input type="text" ng-model="vm.product.title" placeholder="Title" required>
+					</div>
+					<div class="form-group col-md-12 col-sm-12 col-xs-12">
+						<textarea placeholder="Description" ng-model="vm.product.description" required></textarea>
+					</div>
+
+					<div class="form-group col-md-12 col-sm-12 col-xs-12">
+						<div class=" form-group col-md-12 col-sm-12 col-xs-12">
+							<h2>Images</h2>
+							<!--<a href="#" class="theme-btn btn-style-one">Add image from URL</a>
+	       					<a href="#" class="theme-btn btn-style-one">Add image</a>
+							-->
+							<!--<form id="uploadForm" name="fileform" ng-submit="uploadFile($event)">-->
+								<input type="file" name="file" ngf-select="uploadFile()" ngf-pattern="'image/*'" ng-model="file" ngf-max-size="20MB" />
+								<!--<button class="btn btn-default" ng-click="uploadFile()">Upload</button>-->
+								<!--<button type="submit" >submit</button>-->
+							<!--</form>-->
+
+							<!--<input type="text" class="form-control" ng-model="vm.product.imagepath" />-->
+
+
+
+						</div>
+
+						<div class="form-group col-md-12 col-sm-12 col-xs-12">
+							<!--<img src="images/gallery/1.jpg" />-->
+							<img ngf-thumbnail="file">
+						</div>
+					</div>
+
+				</div>
+
+				<div class="form-group col-md-6 col-sm-6 col-xs-12">
+
+					<div class="form-group col-md-12 col-sm-12 col-xs-12">
+						<div class="panel panel-default col-md-12">
+							<h4>Visibility</h4>
+							<input type="checkbox"> Online Store
+							<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+						</div>
+
+						<div class="panel panel-default  col-md-12">
+							<h4>Organization</h4>
+							<span>Product type</span>
+							<select class="form-group" ng-model="vm.product.producttype" ng-options="x.id as x.name for x in vm.productType">
+
+
+
+	    					<span>Vendor</span>
+
+	    					<select class="form-group">
+	    						<option selected>{{vm.user.username}}</option>
+	    					</select>
+						</div>
+
+						<div class="panel panel-default  col-md-12">
+							<h4>Collections</h4>
+							<label>Price:</label>
+							<input type="text" name="price" ng-model="vm.product.price" required>
+							<label>SKU:</label>
+							<input type="text" name="sku" ng-model="vm.product.sku" required>
+						</div>
+						<div class="text-center">
+							<button type="submit" class="theme-btn btn-style-one" ng-disabled="addproductform.$invalid">Add Product</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--</form>-->
