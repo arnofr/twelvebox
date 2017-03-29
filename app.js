@@ -22,13 +22,13 @@ var mongodb     = process.env.IP || "localhost";
 //add for Mongo support
 
 //mongoose.connect('mongodb://localhost/cho-you');
-
+mongoose.set('debug',true);
 //initial config when using docker
-//mongoose.connect('mongodb://' + mongodb +'/cho-you');             //connect to Mongo
+mongoose.connect('mongodb://' + mongodb +'/cho-you');             //connect to Mongo
 
 //my config for remote connect to db
-mongoose.set('debug',true);
-mongoose.connect('mongodb://' + "192.168.99.100" +'/cho-you');
+
+//mongoose.connect('mongodb://' + "192.168.99.100" +'/cho-you');
 
 var app = express();
 
